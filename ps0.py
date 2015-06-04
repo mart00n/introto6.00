@@ -6,5 +6,5 @@
 # Program takes input for DOB and last name from user, then prints
 dob = input('Please enter your date of birth: ')
 surname = input('Please enter your last name: ')
-print(surname + ' ' + dob)
+print(surname, dob)
 
