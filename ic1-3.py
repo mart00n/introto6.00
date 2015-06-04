@@ -49,20 +49,56 @@
 #    print(ans, 'is close enough to the square root of ', x)
 
 # Bisection search version of program
-x = 12345.0
-eps = 0.01
-guesses = 0
-low = 0.0
-high = x
-ans = (high + low)/2.0
-while abs(ans ** 2 - x) >= eps and ans <= x:
-    print(low, high, ans)
-    guesses += 1
-    if ans ** 2 < x:
-        low = ans
-    else:
-        high = ans
-    ans = (high + low)/2.0
-print('# of guesses = ', guesses)
-print(ans, 'is close enough to square root of', x)
-# Note: Answer to prof question is values between 0 and 1 will not be found by this method
+#x = 0.5
+#eps = 0.01
+#guesses = 0
+#low = 0.0
+#high = max(x, 1.0)
+#ans = (high + low)/2.0
+#while abs(ans ** 2 - x) >= eps and ans <= x:
+#    print('Low:',low,'High:', high,'Guess:', ans)
+#    guesses += 1
+#    if ans ** 2 < x:
+#        low = ans
+#    else:
+#        high = ans
+#    ans = (high + low)/2.0
+#print('# of guesses = ', guesses)
+#print(ans, 'is close enough to square root of', x)
+
+# New program with functions
+#def within_eps(x, y, epsilon):
+#    #x, y, eps floats, eps > 0.0
+#    #returns True if x is within eps of y
+#    return abs(x - y) <= eps
+
+#def f(x):
+#    x = x + 1
+#    print('x =', x)
+#    return x
+
+#print(within_eps(2, 3, 1))
+#val = within_eps(2, 3, 0.5)
+#print(val)
+
+#x = 3
+#z = f(x)
+#print('z =', z)
+#print('x =', x)
+
+def f1(x):
+    def g():
+        x = 'abc'
+        assert False
+    x = x + 1
+    print('x =', x)
+    g()
+    return x
+
+x = 3
+z = f1(x)
+
+def isEven(i):
+    # assumes i is a positive int
+    # returns True if i is even, otherwise returns false
+    return i % 2 == 0
