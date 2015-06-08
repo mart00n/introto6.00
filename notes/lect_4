@@ -1,0 +1,39 @@
+6.00 Intro to SC
+Machine interpretation of a program
+Program from last lecture does not work on values between 0 and 1 (nice prediction!)
+
+The while loop is not being exited
+    Adding a print statement in the while loop can help debug (don't we know it...)
+    We fix this by making sure the search space will include at least up to 1
+        high = max(x, 1.0)
+
+How can we shrink the amount of code in this program? - functions
+
+We need a mechanism that provides:
+    Decomposition - creates structure, break our program into modules, later classes
+        Modules - self-contained, reusable unit of functionality usable in multiple contexts
+    Abstraction - suppresses details, allows us to use a piece of code as if it is a 'black box'
+        ex. when we use +, /, etc. we don't care how the machine is really doing the math
+
+Now we are going to make a function to check something in our code and call it
+    Syntax: def functionname(parameters):
+                body - code here based on params or not
+
+Functions have:
+    Name
+    Parameters
+    Body
+
+We use functions by invoking them
+    print(functionname(1, 2, 3, etc.)
+    var = functionname(1, 2, 3...)
+
+Functions make code more readable with less clutter, and save repetition
+
+What happens when we call a function?
+    1) The formal parameter, x in our case, is bound to the value of the actual parameter, also
+       called x in our example case; the two are not related!
+    2) Upon entry, a new scope (mapping from names to objects) is created
+
+Strings
+

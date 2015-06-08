@@ -1,0 +1,76 @@
+Introduction to 6.00 - A gentle introduction to programming using Python
+
+Meant for students with limited or no programming experience
+Meant to contrast with more involved and complex 6.01 course which assumes prior knowledge
+Course will be focused on Python, use Python 2 for examples and code (I'll be using 3)
+Focused on computational problem solving, not memorization
+2 quizzes and final, syllabus online
+Problem sets may be solved with anyone
+
+Declarative and imperative knowledge
+	Declarative knowledge - composed of statements of fact
+        ex. "A good healthcare plan improves care while saving money"
+        ex. "y = sqrt(x)"
+    Imperative knowledge - knowledge about how to accomplish something, like a recipe
+        ex. 1) Start with a guess, x
+            2) if x*x is close enough to y, then x ~ sqrt(y)
+            3) otherwise, create a new guess by averaging x and y/x
+                then xnew = y/x... repeat
+            4) Use this new guess and go back to step 2
+
+A theme of the course - We cannot solve something precisely, but we may get a good estimate
+    Approximation algorithms
+
+Algorithm - how to perform a computation - consists of the following:
+    Converged - when an algorithm has found an acceptable solution and is complete
+    Instructions
+    Flow of control
+    Termination condition
+
+Early computers were "fixed program computers"
+    Designed physically to do very specific things
+    ex. Physical circuit to perform above algorithms, or solve systems of equations
+        One machine could only do one task
+
+Eventually, "stored program computers" took over
+    Instructions are written as data, no memory distinction between input and steps of algorithm
+    Made machines extremely flexible, programs could be changed and produce other programs
+    Interpreter - a program which can execute any legal set of instructions on a computer
+    Given a small set of built in instructions, more complex things may be done by combinations
+
+Turing found 6 primitive instructions that could accomplish all computing tasks
+Modern processors have maybe dozens, still very few
+
+Language for this course is Python
+    Relatively new language (early 90's I think...)
+    Course is not about learning Python, rather about solving problems
+    Knowledge gained will allow learning other languages more easily
+
+Every language has...
+    Syntax - which sequences of characters and symbols constitute a well-formed string
+        ex. y = x + 4 (VALID)
+            y = x 4   (INVALID)
+    Static semantics - which well-formed strings have a meaning
+        ex. 3 / 'abc' is a valid statement, but we are dividing a number by a string, so error
+    Semantics - what that meaning is
+        
+Programs can crash if they have an issue with instructions
+    In a proper system, one program crashing doesn't interfere with the rest of the system
+
+Programs can also never stop
+    We should plan how long our programs are supposed to run to stop this
+    These programs contain an infinite loop
+
+Programs may run to completion and produce an incorrect answer
+    The worst outcome, we may not know anything is wrong!
+    Has led to deaths from radiation machines, rockets, aircraft, etc.
+    We will focus on how to test programs and avoid this issue
+
+Python is mediocre at avoiding crashes, infinite loops, and wrong answers
+    Has very rigorous static semantics
+    Will build good habits by breaking when certain things are done (like string example)
+
+We use Python because...
+    Very easy to learn, less complicated than Java or C
+    Widely used in science computing today, maybe most popular in biology
+    Easier to debug than most languages, no compiling necessary, interpreted language

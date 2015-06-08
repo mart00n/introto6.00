@@ -1,0 +1,66 @@
+Intro to 6.00 Lecture 2
+6/01/15
+
+Core Elements of a Program
+
+IDLE - Integrated Development Environment
+    Includes specialized text editor
+        Highlighting, text completion, auto-indent, etc.
+    Shell for executing code with syntax highlighting
+    Integrated debugger
+
+Objects
+    Everything in Python is an object
+    Each object has a type
+        built in type() function that tells us what an object is
+        Scalar - indivisble types of objects
+            int, float (note: floats are not quite real numbers!), booleans (True/False), None
+            Python does NOT have 'char' type as other languages do, instead uses strings length 1
+        Non-scalar - data types with multiple parts
+
+Expression - sequence of operands and operators (operands are objects)
+    ex. 3 + 2 >>> 5
+        3 / 2 >>> 1 (only in python 2)
+        3.0 / 2.0 >>> 1.5 (floats necessary for real division)
+        'a' + 'b' >>> 'ab' (concatenation)
+    Overloaded operators have a meaning that depends on the types of operands
+
+The interactive shell is nice for testing, but mostly we will use an editor and then run programs
+Program = script
+A program is a sequence of commands
+
+Variable - a name for an object (in Python at least)
+    a = 3 (assigns a value of 3 to a variable a)
+
+Big note: input() is the only input function in 3.0, and is identical to raw_input(), these make
+          everything strings by default no matter what the user enters.  eval(input()) may be used
+          in 3 to simulate the old input()
+
+Straight line program - program in which every command is executed once (boring, not useful!)
+Conditional statements - if, else, elif
+
+###
+if x%2 == 0:
+    print('even')
+else:
+    print('odd')
+    if x%3 != 0:
+        print('and not divisible by 3')
+###
+
+Indentation of blocks matters in Python, use 4 spaces
+Programs are intended to be read, not just executed!
+    We debug by reading code in programs
+    Python encourages writing neatly with matching visual and semantic structure
+
+Branching programs - like the above example, with branching possibilities (still boring)
+
+The time taken by straight line program is governed by how many steps are present, not on input
+The time taken by a branching program is also governed by the size of the program too
+In more complex programs, the amount of input will affect the time, not the length of the program!
+This is important and explored more later...
+
+Looping construct (iteration) - some way to repeat execution of certain statements 
+    Loops are necessary to have a Turing complete language (able to do any computation)
+
+

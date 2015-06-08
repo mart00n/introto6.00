@@ -1,0 +1,108 @@
+6.00 intro to SC
+6/7/2015
+
+Recitation 2: Loops, Tuples, Strings, and Functions
+Note: the help() function can be used to get help on any built in Python function, ex.
+help(range)
+>>>
+range(...)
+    range([start,] stop[, step]) -> list of integers
+    
+    Return a list containing arithmetic progression of integers. range(i, j) returns...
+
+note that the [] indicate optional parameters in help dialogs
+
+Tuples - non-scalar (multiple values) immutable (cannot be changed easily)
+
+tuple_of_numbers = (3.14159, 2, 1, -100, 100, 240)
+tuple_of_strings = ('What', 'is', 'my', 'name?')
+
+Tuples start at index 0
+    ex. print(tuple_of_numbers[0])
+        >>>
+        3.14159
+
+Specifying a negative index will go backwards from the end of the tuple
+    ex. print(tuple_of_numbers[-3])
+        >>>
+        -100
+
+Specifying a range outside of the index will throw an error
+
+The len() function will return the length of a tuple in elements
+
+Tuples can hold different data types together heterogeneously, like a combination of ints and strs
+Tuples may also contain other tuples as an element
+
+You can iterate over a tuple, for example:
+for x in tuple_of_numbers
+    print(x)
+>>>
+3.14159 2 1 -100 100 240
+
+To slice tuples:
+print(tuple_of_numbers[1:3]) - prints index 1 through 3
+print(tuple_of_numbers[:2]) - prints index 0 through 2
+print(tuple_of_numbers[1:]) - prints index 1 through the end
+print(tuple_of_numbers[:]) - prints the whole tuple as a slice of itself (aliasing later)
+print(tuple_of_numbers[:-1] - prints from 0 to -1
+
+Although we cannot modify tuples, this oddity can happen:
+print('Before: ', tuple_of_numbers)
+tuple_of_numbers = tuple_of_numbers + (100, 20)
+print('After: ', tuple_of_numbers)
+>>>
+(3.14159, 2, 1, -100, 100, 240)
+(3.14159, 2, 1, -100, 100, 240, 100, 20)
+
+Why does this happen? Because a new tuple is being assigned named tuple_of_numbers containing the
+old tuple and additional information; In reality, tuples are immutable, this is a reassignment
+
+Important note:
+oopsie = (50) - this is not a tuple!
+onsie = (50,) - this is a true one element tuple!
+
+Strings are actualy a lot like tuples, they are immutable, and follow the same index convention
+
+name = 'Mitch'
+print(name[0])
+>>>
+M
+
+It is possible to iterate through a string just like a tuple or list
+Note:
+print(name.upper())
+>>>
+MITCH
+
+and likewise for .lower()
+
+print(name.replace('M', 'P')
+>>>
+Pitch
+
+The replace function doesn't actually change the string, but returns a string with the replacement
+The returned value can be reassigned however, just like the previous tuple example
+
+dir(str) will return functions for use with str
+help(str.replace) will give specific function help
+help(str) will give a broad overview help file for the str
+
+Strings are case sensitive
+
+Multiple functions may be appended, ex. name.lower().replace(...)
+
+Functions:
+def cube(number):
+    """Takes a number and returns the cube of that number.
+    Input: number (float or int)
+    Output: number (float)"""
+    return number ** 3
+
+The string below the def line is called the specification, and documents what the function does
+This is shown in IDEs and is a standard way to describe functions; WRITE THESE!
+
+Below this is the body, code to be executed
+
+return describes what is given back from the function when it is executed
+return is not print!

@@ -1,0 +1,36 @@
+6.00 Intro to SC
+Objects in Python
+
+Lists, Tuples, Dictionaries
+
+Tuples - nonscalar immutable data structures
+define with:
+x = (1, 2, 3, 'string', 4.0, ...)
+
+Slicing tuples - getting a subsequence of the tuple
+
+Lists - more useful and complicated than tuples because they are mutable (lists can be changed)
+
+append is a method
+    Instead of for example, append(List,e) we use List.append(e)
+    This is very useful once we get into classes and more complex OOP concepts
+    Append is not the same as assigning something, it actually mutates the list
+
+Lists and tuples may be iterated through with for loops
+
+Indexes represent the positions in a tuple or list, starting with 0
+    ex. List[1] returns the second element, as 0 is the first element
+
+Note that mutation is interesting and leads to confusing scenarios; reassinging a variable that is
+part of a list will not change the list, but leave the existing object and assign the name to a new
+one
+
+Alias - one object with multiple names is 'aliased'
+    For immutable objects, aliasing is harmless
+    For mutable objects, we can become confused when we modify something through one name and
+    another attempts to access it
+
+For dicts - Unlike in lists, the elements are not ordered, and the indices do not have to be
+            integers (they are called keys, not indices, and can be any immutable type)
+
+Dicts are a set of key-value pairs

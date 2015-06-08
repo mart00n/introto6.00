@@ -1,0 +1,42 @@
+6.00 intro to SC
+6/3/2015
+
+For what values will the cube root code terminate?
+    All values of x will succeed, how do we know?
+
+Decrementing function
+    1) Map a set of program variables to an integer
+    2) When the loop is entered for the first time, its value is non negative
+    3) When <= 0, loop terminates
+    4) Decreased each iteration
+
+    In the previous example, this is: abs(x) - ans ** 3, which decrements as x increases
+
+Exhaustive enumeration - a guess and check method where each guess steps through all possible
+                         answers; If a correct guess is not found, there is no solution
+
+Exhaustive enumeration is primitive, but can still be useful and solve problems (brute force!)
+
+Range function:
+    range(x,y) = (x, x+1, ..., y-1)
+    the break function may be used to exit a loop early, without going through all values of range
+
+We will use for loops more than while loops in this semester!
+
+Syntax example:
+for x in range():
+    break
+
+What about a more advanced program that can do any number, not just integers or perfect cubes?
+
+Approximation - finding an answer that is 'good enough' instead of exact
+    Find a y such that y*y = x + or - eps (specification of the problem)
+
+From the ic1.py example, now the time to find a solution is affected by how we increment, and how
+we set error (smaller steps and error take more steps but are more precise, etc.)
+
+Bisection search - a better way than brute force algorithms
+    1) Cut search space in half each iteration
+    2) Dramatically more efficient than brute force
+
+Functions will be covered next lecture

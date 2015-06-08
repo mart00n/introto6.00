@@ -1,0 +1,51 @@
+Intro to 6.00 Recitation 1
+6/02/2015
+
+Python concepts and questions session (useful? maybe when homework gets harder)
+Python
+    Used for web development, all sorts of other things
+    Interpreted language - no compiling, an interpreter executs programs right away
+
+Operations
+    +,- what you'd expect
+    * multiplies
+    ** exponentials (not ^)
+    / division, will do interesting things to pure integers (usually turns them into floats)
+    % returns the remainder of 2 divided integers, useful for various things 
+
+Strings
+    use 'a' or "a" (no functional difference, let's you embed quotes in a string)
+
+Input
+    variable = input('prompt')
+    Allows us to collect information from a user through a prompt
+
+Types
+    Type functions
+        answer_int = int(answer)
+        answer_str = str(answer)
+        etc.
+    Booleans - True/False statements (note capitalization!)
+    None - placeholder basically, will use later
+    List, tuple, dictionary - divisible data types to be covered later
+
+Operands
+    <,> works as expected
+    <=,>= also works as expected, note the syntax though
+    != is not equal to
+    == is equal to
+    and, or - takes 2 operands and evaluates whether they are both or one is true
+    not - takes 1 operand, if that thing is not true/opposite
+    Note: need of () in some cases to combine these things correctly
+        ex. a = True
+            b = True
+            c = False
+            (a and b) or c >>> True
+
+Control structures
+    if, elif, else - branches
+    for i in range(1,10) - will run i values 1 through 10 for a loop
+    while <condition> - will loop code as long as some condition is met, useful when we don't know
+                        how many iters
+
+
