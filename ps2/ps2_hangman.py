@@ -89,7 +89,10 @@ for i in gameword:
 #print(listconv(score))
 
 while parts > 0 and '_' in score:
-    print("You have", parts, "wrong guesses left.")
+    if parts != 1:
+        print("You have", parts, "wrong guesses left.")
+    else:
+        print("You have", parts, "wrong guess left.")
     print("Available letters:", listconv(letters))
     guess = input("Please guess a letter: ")
     if guess in gameword and guess in letters:
@@ -107,6 +110,6 @@ while parts > 0 and '_' in score:
     print('')
 
 if '_' not in score:
-    print("You win! Nice job figuring out my word was", gameword)
+    print("You win! Nice job figuring out my word was ", gameword, '.', sep='')
 else:
-    print("You lose! The word was", gameword,", better luck next time!")
+    print("You lose! The word was ", gameword,", better luck next time!", sep='')
