@@ -22,7 +22,6 @@ def evaluate_poly(poly, x):
     for n in range(order, -1, -1):
         fofx += x ** n * poly[n]
     return fofx
-    # TO DO ... 
 
 #print(evaluate_poly((1.0, 0.0, 5.0, 9.3, 7.0), -13.0))
 
@@ -39,7 +38,16 @@ def compute_deriv(poly):
     poly: tuple of numbers, length > 0
     returns: tuple of numbers
     """
-    # TO DO ... 
+    order = len(poly) - 1
+    derivlist = []
+    if order == 0:
+        return (0.0,)
+    else:
+        for n in range(1, order + 1, 1):
+            derivlist.append(n * poly[n])
+        return tuple(derivlist)
+
+#print(compute_deriv((-13.39, 0.0, 17.5, 3.0, 1.0)))
 
 def compute_root(poly, x_0, epsilon):
     """
