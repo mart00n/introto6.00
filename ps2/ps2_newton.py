@@ -1,7 +1,7 @@
 # 6.00 Problem Set 2
-#
+# Name: Andrew Marton
 # Successive Approximation
-#
+# Time: 11:20 - ..
 
 def evaluate_poly(poly, x):
     """
@@ -17,8 +17,14 @@ def evaluate_poly(poly, x):
     x: number
     returns: float
     """
+    order = len(poly) - 1
+    fofx = 0.0
+    for n in range(order, -1, -1):
+        fofx += x ** n * poly[n]
+    return fofx
     # TO DO ... 
 
+#print(evaluate_poly((1.0, 0.0, 5.0, 9.3, 7.0), -13.0))
 
 def compute_deriv(poly):
     """
