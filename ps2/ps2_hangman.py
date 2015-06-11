@@ -1,7 +1,7 @@
 # 6.00 Problem Set 3
 # Name: Andrew Marton 
 # Hangman
-# Time: 1600 - 
+# Time: ~130m 
 
 
 # -----------------------------------
@@ -78,7 +78,7 @@ gameword = choose_word(wordlist)
 wordlen = len(gameword)
 print("Welcome to the game, Hangman!")
 print("I'm thinking of a word that is", wordlen, "letters long...")
-print(gameword) #debug
+#print(gameword) #debug
 parts = 6
 letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
@@ -86,23 +86,27 @@ letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','
 score = [] 
 for i in gameword:
     score.append('_')
-print(listconv(score))
+#print(listconv(score))
 
-while parts > 0:
+while parts > 0 and '_' in score:
     print("You have", parts, "wrong guesses left.")
     print("Available letters:", listconv(letters))
     guess = input("Please guess a letter: ")
-    if guess in gameword:
-        #pos = gameword.find(guess)
-        #print(pos) #debug
-        #score = score.replace(guess)
-        #score[pos] = guess
+    if guess in gameword and guess in letters:
         scoreupdate()
+        letters.remove(guess)
         print("Good guess:", listconv(score))
-    else:
+    elif guess not in gameword and guess in letters:
         parts -= 1
-        #letters = letters.replace(guess, '')
-        
+        letters.remove(guess)
         print("Oops!", guess, "is not in my word:", listconv(score))
+    elif guess in gameword and guess not in letters:
+        print("You have already guessed that letter, please guess again.")
+    else:
+        print("That is not a valid guess, please try again.")
+    print('')
 
-print("You lose! The word was", gameword,", better luck next time!")
+if '_' not in score:
+    print("You win! Nice job figuring out my word was", gameword)
+else:
+    print("You lose! The word was", gameword,", better luck next time!")
