@@ -1,7 +1,7 @@
 # 6.00 Problem Set 2
 # Name: Andrew Marton
 # Successive Approximation
-# Time: 11:20 - ..
+# Time: ~70m
 
 def evaluate_poly(poly, x):
     """
@@ -69,5 +69,13 @@ def compute_root(poly, x_0, epsilon):
     epsilon: float > 0
     returns: tuple (float, int)
     """
-    # TO DO ... 
+    i = 0
+    fofx = epsilon + 1.0
+    while abs(fofx) > epsilon:
+        fofx = evaluate_poly(poly, x_0)
+        fprimeofx = evaluate_poly(compute_deriv(poly), x_0)
+        x_0 = x_0 - fofx / fprimeofx
+        i += 1
+    return (x_0, i)
 
+print(compute_root((-13.39, 0.0, 17.5, 3.0, 1.0), 0.1, 0.0001))
