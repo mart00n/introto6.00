@@ -73,6 +73,15 @@ def scoreupdate():
         if gameword[i] == guess:
             score[i] = guess
 
+def hangdraw():
+    """
+    Draws a stick figure as a visual representation of remaining guesses
+    Will draw a blank gallows when guesses are at maximum
+    """
+    if guesses == 6: #fill in later for fully featured hangman terminal game
+        print('')
+
+
 wordlist = load_words()
 gameword = choose_word(wordlist)
 wordlen = len(gameword)
@@ -81,6 +90,7 @@ print("I'm thinking of a word that is", wordlen, "letters long...")
 #print(gameword) #debug
 parts = 6
 letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+guesslist = []
 
 # make list of _ to print for user
 score = [] 
@@ -98,15 +108,19 @@ while parts > 0 and '_' in score:
     if guess in gameword and guess in letters:
         scoreupdate()
         letters.remove(guess)
+        guesslist.append(guess)
         print("Good guess:", listconv(score))
     elif guess not in gameword and guess in letters:
         parts -= 1
         letters.remove(guess)
+        guesslist.append(guess)
         print("Oops!", guess, "is not in my word:", listconv(score))
     elif guess in gameword and guess not in letters:
-        print("You have already guessed that letter, please guess again.")
+        print("You have already guessed that letter, please guess again.", listconv(score))
+    elif guess not in gameword and guess in guesslist:
+        print("You have already guessed that letter, please guess again.", listconv(score))
     else:
-        print("That is not a valid guess, please try again.")
+        print("That is not a valid guess, please try again.", listconv(score))
     print('')
 
 if '_' not in score:
