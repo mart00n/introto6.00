@@ -1,0 +1,50 @@
+6.00 Intro to SC
+6/12/2015
+Substitute Teacher (Guttag out of town)
+Recursion
+
+Finishing thoughts on dictionaries:
+Dictionaries can be used in different ways than we have done
+    Lists, tuples, any object can be a key in a dict
+
+Retrieval time of data from a dictionary is independent of the data stored in a dict
+
+Walk through of dictionary translate program to demonstrate how each function works
+
+Separating functions has two purposes:
+    1. Saves rewriting code
+    2. Provides modular abstraction - function may be changed without altering each usage
+
+Divide large problems and conquer
+    Small problems are easier to solve than the large original problem
+    Combinations of small solutions can easily solve the big problem
+
+One great technique for divide and conquer algorithms:
+Recursion
+    Not subtle, much more than just a programming technique
+    1. Way of describing or defining problems
+    2. Way of designing solutions to problems
+
+Base case
+    Gives a direct answer that satisfies the definition
+Recursive (inductive) case
+    Reduce to a simpler version of the same problem, plus other simple operations
+
+Suppose we want to build a procedure to do exponents, but we can only multiply with our machine...
+    b^n = {b1*b2*b3*b4...bn}
+        = b*{b1*...bn-1}
+        = ...
+
+Tower of Hanoi Problem:
+    There are three tall spikes with 64 golden discs, all of a different size. All discs start on
+    one spike. Monks must move all of the discs to a different tower, one disk at a time. A smaller
+    disc may never be covered by a larger disc.
+
+Let's write a recursive solution... (see code)
+
+What about writing a piece of code to decide if something is a palindrome...
+
+These problems are examples of things that will be much more difficult with loops and other
+structures
+
+FYI - repr() - return printable representation of an object

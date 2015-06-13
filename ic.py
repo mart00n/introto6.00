@@ -177,30 +177,75 @@
 #for k in D1.keys():
 #    print(k, '=', D1[k])
 
-EtoF = {'bread': 'du pain', 'wine': 'du vin',\
-        'eats': 'mange', 'drinks': 'bois',\
-        'likes': 'aime', 1: 'un',\
-        '6.00': '6.00'}
+#EtoF = {'bread': 'du pain', 'wine': 'du vin',\
+#        'eats': 'mange', 'drinks': 'bois',\
+#        'likes': 'aime', 1: 'un',\
+#        '6.00': '6.00'}
+#
+#def translateWord(word, dictionary):
+#    if word in dictionary:
+#        return dictionary[word]
+#    else:
+#        return word
+#
+#def translate(sentence):
+#    translation = ''
+#    word = ''
+#    for c in sentence:
+#        if c != ' ':
+#            word = word + c
+#        else:
+#            translation = translation + ' '\
+#                          + translateWord(word, EtoF)
+#            word = ''
+#    return translation[1:] + ' ' + translateWord(word, EtoF)
+#    # the extra term above is because sentences do not end with a ' '
+#
+#print(translate('John eats bread'))
+#print(translate('Steve drinks wine'))
+#print(translate('John likes 6.00'))
 
-def translateWord(word, dictionary):
-    if word in dictionary:
-        return dictionary[word]
+def simpleExp(b, n):
+    if n == 0:
+        return 1
     else:
-        return word
+        return b * simpleExp(b, n - 1)
+#example uses recursion to find an exponent
 
-def translate(sentence):
-    translation = ''
-    word = ''
-    for c in sentence:
-        if c != ' ':
-            word = word + c
-        else:
-            translation = translation + ' '\
-                          + translateWord(word, EtoF)
-            word = ''
-    return translation[1:] + ' ' + translateWord(word, EtoF)
+#print(simpleExp(4, 4))
 
-print(translate('John eats bread'))
-print(translate('Steve drinks wine'))
-print(translate('John likes 6.00'))
+def hanoi(n, f, t, s):
+    """
+    Solves variants of the Tower of Hanoi Problem recursively
+    n is stack size, f is from stack, t is to stack, s is spare stack
+    """
+    if n == 1:
+        print('Move from', f, 'to', t)
+    else:
+        hanoi(n-1, f, s, t)
+        hanoi(1, f, t, s)
+        hanoi(n-1, s, t, f)
+
+#hanoi(6, 'one', 'two', 'three') #64 discs would take millions of years to calculate...
+
+def toChars(s): # this doesn't work because fuck python 2...
+    import string
+    s = string.lower(s)
+    ans = ''
+    for c in s:
+        if c is string.lowercase:
+            ans = ans + c
+    return ans
+
+def isPalindrome(s):
+    if len(s) <= 1:
+        return True
+    else:
+        return s[0] == s[-1] and isPalindrome(s[1:-1])
+
+print(isPalindrome('able was I ere I saw elba'))
+
+def fib(n):
+    # make a recursive fibonnaci later, can't see this guy's shit
+
 
