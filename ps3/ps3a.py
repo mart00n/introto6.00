@@ -29,14 +29,14 @@ def load_words():
     Depending on the size of the word list, this function may
     take a while to finish.
     """
-    print "Loading word list from file..."
+    print("Loading word list from file...")
     # inFile: file
-    inFile = open(WORDLIST_FILENAME, 'r', 0)
+    inFile = open(WORDLIST_FILENAME, 'r', -1)
     # wordlist: list of strings
     wordlist = []
     for line in inFile:
         wordlist.append(line.strip().lower())
-    print "  ", len(wordlist), "words loaded."
+    print("  ", len(wordlist), "words loaded.")
     return wordlist
 
 def get_frequency_dict(sequence):
@@ -95,8 +95,8 @@ def display_hand(hand):
     """
     for letter in hand.keys():
         for j in range(hand[letter]):
-             print letter,              # print all on the same line
-    print                               # print an empty line
+             print(letter,)             # print all on the same line
+    print()                             # print an empty line
 
 #
 # Make sure you understand how this function works and what it does!

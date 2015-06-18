@@ -1,4 +1,4 @@
-# 6.00 Problem Set 3
+# 6.00 Problem Set 2
 # Name: Andrew Marton 
 # Hangman
 # Time: ~130m 
