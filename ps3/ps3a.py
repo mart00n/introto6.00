@@ -7,6 +7,8 @@
 
 import random
 import string
+import os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 VOWELS = 'aeiou'
 CONSONANTS = 'bcdfghjklmnpqrstvwxyz'
@@ -180,7 +182,7 @@ def is_valid_word(word, hand, word_list):
     # Check if the word can be made out of the hand
     # Let's make the word into a dict then use some subtract method...
     worddict = get_frequency_dict(word)
-    #print(worddict)
+    print(worddict)
     if set(worddict).issubset(set(hand)) and word in word_list:
         diffs = {}
         #print('Canary!')
@@ -266,14 +268,14 @@ if __name__ == '__main__':
     word_list = load_words()
     play_game(word_list)
 
-#Learning pull requests, hw help mr. zak
-#Testing for issues with is_valid_word function, look here y2k
-#testword = 'quail'
-#print('Test word is', testword)
-#print('The hand is:', hand)
-#print('Testing compound if statement from word check function...')
-#print(set(get_frequency_dict(testword)).issubset(set(hand)) and testword in word_list)
-#print('Testing boolean check for word in wordlist...')
-#print(testword in word_list)
-#print('Testing output of function...')
-#print(is_valid_word(testword, hand, word_list))
+    #Testing for issues with is_valid_word function, look here y2k
+    testword = 'quail'
+    print('Test word is', testword)
+    print('The hand is:', hand)
+    print('Testing compound if statement from word check function...')
+    print('exactly as is was before it was fixed above...')
+    print(set(get_frequency_dict(testword)).issubset(set(hand)) and testword in word_list == True)
+    print('Testing boolean check for word in wordlist...')
+    print(testword in word_list)
+    print('Testing output of function...')
+    print(is_valid_word(testword, hand, word_list))
