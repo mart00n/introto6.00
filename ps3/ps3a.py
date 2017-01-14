@@ -266,6 +266,7 @@ if __name__ == '__main__':
     word_list = load_words()
     #play_game(word_list)
 
+#Learning pull requests, hw help mr. zak
 #Testing for issues with is_valid_word function, look here y2k
 testword = 'quail'
 print('Test word is', testword)
