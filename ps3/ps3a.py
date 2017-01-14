@@ -2,8 +2,8 @@
 #
 # The 6.00 Word Game
 # Created by: Kevin Luu <luuk> and Jenna Wiens <jwiens>
-#
-#
+# Andrew Marton
+# Started at 1300
 
 import random
 import string
@@ -76,7 +76,15 @@ def get_word_score(word, n):
     word: string (lowercase letters)
     returns: int >= 0
     """
-    # TO DO...
+    score = 0
+    for c in word:
+        score += SCRABBLE_LETTER_VALUES[c]        
+    score = score * len(word)
+    if len(word) == n:
+        score += 50
+    return score
+
+# print(get_word_score('',6))
     
 #
 # Make sure you understand how this function works and what it does!
@@ -94,7 +102,7 @@ def display_hand(hand):
     hand: dictionary (string -> int)
     """
     for letter in hand.keys():
-        for j in range(hand[letter]):
+        for j in range(hand[letter]):   # prints letters multiple times according to dict value in hand
              print(letter,)             # print all on the same line
     print()                             # print an empty line
 
@@ -113,8 +121,8 @@ def deal_hand(n):
     n: int >= 0
     returns: dictionary (string -> int)
     """
-    hand={}
-    num_vowels = n / 3
+    hand={} # defines hand as blank dict
+    num_vowels = n / 3  # sets number of letters to be drawn from vowel list as total over 3
     
     for i in range(num_vowels):
         x = VOWELS[random.randrange(0,len(VOWELS))]
@@ -145,7 +153,16 @@ def update_hand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
-    # TO DO ...
+    for c in word:  # This implementation leaves keys with value 0 from hand in dict after update
+        hand[c] -= 1    # Looks up key c in dict, subtracts 1 from amount of that letter
+    return hand
+
+# some testing...
+hand = {'a':1, 'q':1, 'l':2, 'm':1, 'u':1, 'i':1}
+# display_hand(hand)
+# update_hand(hand, 'quail')
+# print('after play...')
+# display_hand(hand)
 
 #
 # Problem #3: Test word validity
@@ -160,6 +177,26 @@ def is_valid_word(word, hand, word_list):
     hand: dictionary (string -> int)
     word_list: list of lowercase strings
     """
+    # Check if the word can be made out of the hand
+    # Let's make the word into a dict then use some subtract method...
+    worddict = get_frequency_dict(word)
+    print(worddict)
+    if set(worddict).issubset(set(hand)) and word in word_list == True:
+        diffs = {}
+        print('Canary!')
+        for k, v in hand.items():   # This iterates over k, and values in a dict
+            diffs[k] = v - worddict.get(k, 0)   # .get method used to avoid errors for missing keys
+            print(diffs)
+        for v in diffs.values():
+            if v < 0:
+                return False
+            else:
+                return True
+    else:
+        return False
+    # Check if the word is in the dict
+
+    # Note that test code is after loading word list!
     # TO DO...
 
 def calculate_handlen(hand):
@@ -227,4 +264,15 @@ def play_game(word_list):
 #
 if __name__ == '__main__':
     word_list = load_words()
-    play_game(word_list)
+    #play_game(word_list)
+
+#Testing for issues with is_valid_word function, look here y2k
+testword = 'quail'
+print('Test word is', testword)
+print('The hand is:', hand)
+print('Testing compound if statement from word check function...')
+print(set(get_frequency_dict(testword)).issubset(set(hand)) and testword in word_list)
+print('Testing boolean check for word in wordlist...')
+print(testword in word_list)
+print('Testing output of function...')
+print(is_valid_word(testword, hand, word_list))

@@ -23,9 +23,10 @@ Functions have:
     Name
     Parameters
     Body
+Placing a ''' string block before the body in a function will enter a specification for that function (USEFUL)
 
 We use functions by invoking them
-    print(functionname(1, 2, 3, etc.)
+    print(functionname(1, 2, 3, etc.))
     var = functionname(1, 2, 3...)
 
 Functions make code more readable with less clutter, and save repetition
