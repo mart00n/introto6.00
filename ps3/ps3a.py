@@ -180,18 +180,18 @@ def is_valid_word(word, hand, word_list):
     # Check if the word can be made out of the hand
     # Let's make the word into a dict then use some subtract method...
     worddict = get_frequency_dict(word)
-    print(worddict)
-    if set(worddict).issubset(set(hand)) and word in word_list == True:
+    #print(worddict)
+    if set(worddict).issubset(set(hand)) and word in word_list:
         diffs = {}
-        print('Canary!')
+        #print('Canary!')
         for k, v in hand.items():   # This iterates over k, and values in a dict
             diffs[k] = v - worddict.get(k, 0)   # .get method used to avoid errors for missing keys
-            print(diffs)
+            #print(diffs)
+            #print(diffs.values())
         for v in diffs.values():
             if v < 0:
                 return False
-            else:
-                return True
+        return True
     else:
         return False
     # Check if the word is in the dict
@@ -264,16 +264,16 @@ def play_game(word_list):
 #
 if __name__ == '__main__':
     word_list = load_words()
-    #play_game(word_list)
+    play_game(word_list)
 
 #Learning pull requests, hw help mr. zak
 #Testing for issues with is_valid_word function, look here y2k
-testword = 'quail'
-print('Test word is', testword)
-print('The hand is:', hand)
-print('Testing compound if statement from word check function...')
-print(set(get_frequency_dict(testword)).issubset(set(hand)) and testword in word_list)
-print('Testing boolean check for word in wordlist...')
-print(testword in word_list)
-print('Testing output of function...')
-print(is_valid_word(testword, hand, word_list))
+#testword = 'quail'
+#print('Test word is', testword)
+#print('The hand is:', hand)
+#print('Testing compound if statement from word check function...')
+#print(set(get_frequency_dict(testword)).issubset(set(hand)) and testword in word_list)
+#print('Testing boolean check for word in wordlist...')
+#print(testword in word_list)
+#print('Testing output of function...')
+#print(is_valid_word(testword, hand, word_list))
