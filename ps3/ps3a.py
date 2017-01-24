@@ -1,3 +1,4 @@
+#! /usr/bin/env python3
 # 6.00 Problem Set 3A Solutions
 #
 # The 6.00 Word Game
@@ -8,7 +9,6 @@
 import random
 import string
 import os
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 VOWELS = 'aeiou'
 CONSONANTS = 'bcdfghjklmnpqrstvwxyz'
@@ -33,7 +33,10 @@ def load_words():
     """
     print("Loading word list from file...")
     # inFile: file
-    inFile = open(WORDLIST_FILENAME, 'r', -1)
+
+    filedir = os.path.dirname(os.path.abspath(__file__))
+    filepath = os.path.join(filedir, WORDLIST_FILENAME)
+    inFile = open(filepath, 'r', -1)
     # wordlist: list of strings
     wordlist = []
     for line in inFile:
@@ -261,14 +264,14 @@ def play_game(word_list):
     """
     # TO DO...
 
-#
-# Build data structures used for entire session and play game
-#
-if __name__ == '__main__':
+def main():
+    """Build data structures used for entire session and play game
+    """
+
     word_list = load_words()
     play_game(word_list)
 
-    #Testing for issues with is_valid_word function, look here y2k
+    #Testing for issues with is_valid_word function
     testword = 'quail'
     print('Test word is', testword)
     print('The hand is:', hand)
@@ -279,3 +282,6 @@ if __name__ == '__main__':
     print(testword in word_list)
     print('Testing output of function...')
     print(is_valid_word(testword, hand, word_list))
+
+if __name__ == '__main__':
+    main()
