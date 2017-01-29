@@ -127,7 +127,7 @@ def deal_hand(n):
     returns: dictionary (string -> int)
     """
     hand={} # defines hand as blank dict
-    num_vowels = n / 3  # sets number of letters to be drawn from vowel list as total over 3
+    num_vowels = int(n / 3)  # sets number of letters to be drawn from vowel list as total over 3
     
     for i in range(num_vowels):
         x = VOWELS[random.randrange(0,len(VOWELS))]
@@ -185,7 +185,7 @@ def is_valid_word(word, hand, word_list):
     # Check if the word can be made out of the hand
     # Let's make the word into a dict then use some subtract method...
     worddict = get_frequency_dict(word)
-    print(worddict)
+    #print(worddict)
     if set(worddict).issubset(set(hand)) and word in word_list:
         diffs = {}
         #print('Canary!')
@@ -241,16 +241,30 @@ def play_hand(hand, word_list):
       word_list: list of lowercase strings
       
     """
-    print('Your hand is:')
-    print(hand)
-    print()
-    print('Play a word')
-    attempt =  str(input('...')).lower()
-    
-    
+    attempt = ''
+    round_hand = hand
+    total_score = 0
+    while sum(round_hand.values()) != 0:
+        print('Your hand is:')
+        print(round_hand)
+        print()
+        print('Play a word or type . to end your hand: ')
+        attempt =  str(input('')).lower()
+        if attempt == '.':
+            print('Total hand score:',total_score)
+            round_hand = {}
+        elif is_valid_word(attempt, round_hand, word_list) == True:
+            word_score = get_word_score(attempt, HAND_SIZE)
+            round_hand = update_hand(round_hand, attempt)
+            total_score += word_score
+            print('Valid word!')
+            print('Word score: ',word_score)
+            print('Total score: ',total_score)
+        else:
+            print('Invalid word. Please try again or end your hand.')
+    print('Hand completed!')
     # TO DO ...
 
-#
 # Problem #5: Playing a game
 # Make sure you understand how this code works!
 # 
@@ -269,37 +283,50 @@ def play_game(word_list):
 
     * If the user inputs anything else, ask them again.
     """
-    # TO DO...
     print('Welcome to the 6.00 Word Game!')
-    print('What would you like to do?')
-    print('n - new hand')
-    print('r - repeat hand')
-    print('e - exit game')
-    input('?') = choice
-    if choice == n:
-        deal_hand(HAND_SIZE)
-    elif choice == r:
-        
+    choice = 0
+    hand = 0
+    while choice != 'e':
+        print('What would you like to do?')
+        print('n - new hand')
+        print('r - repeat hand')
+        print('e - exit game')
+        choice = input('Choice: ')
 
+        if choice == 'n':
+            hand = deal_hand(HAND_SIZE)
+            play_hand(hand, word_list)
+        elif choice == 'r':
+            if hand != 0:
+                play_hand(hand, word_list)
+            else:
+                print('No previous hand.')
+        elif choice == 'e':
+            print('Thanks for playing!')
+        else:
+            print('Please choose from the following options.')
 
 def main():
     """Build data structures used for entire session and play game
     """
 
     word_list = load_words()
+    #test_hand = deal_hand(HAND_SIZE)
+    #play_hand(test_hand, word_list)
+    #print('canary')
     play_game(word_list)
 
     #Testing for issues with is_valid_word function
-    testword = 'quail'
-    print('Test word is', testword)
-    print('The hand is:', hand)
-    print('Testing compound if statement from word check function...')
-    print('exactly as is was before it was fixed above...')
-    print(set(get_frequency_dict(testword)).issubset(set(hand)) and testword in word_list == True)
-    print('Testing boolean check for word in wordlist...')
-    print(testword in word_list)
-    print('Testing output of function...')
-    print(is_valid_word(testword, hand, word_list))
+    #testword = 'quail'
+    #print('Test word is', testword)
+    #print('The hand is:', hand)
+    #print('Testing compound if statement from word check function...')
+    #print('exactly as is was before it was fixed above...')
+    #print(set(get_frequency_dict(testword)).issubset(set(hand)) and testword in word_list == True)
+    #print('Testing boolean check for word in wordlist...')
+    #print(testword in word_list)
+    #print('Testing output of function...')
+    #print(is_valid_word(testword, hand, word_list))
 
 if __name__ == '__main__':
     main()
