@@ -158,7 +158,7 @@ def update_hand(hand, word):
     return hand
 
 # some testing...
-hand = {'a':1, 'q':1, 'l':2, 'm':1, 'u':1, 'i':1}
+# hand = {'a':1, 'q':1, 'l':2, 'm':1, 'u':1, 'i':1}
 # display_hand(hand)
 # update_hand(hand, 'quail')
 # print('after play...')
@@ -236,6 +236,13 @@ def play_hand(hand, word_list):
       word_list: list of lowercase strings
       
     """
+    print('Your hand is:')
+    print(hand)
+    print()
+    print('Play a word')
+    attempt =  str(input('...')).lower()
+    
+    
     # TO DO ...
 
 #
@@ -258,6 +265,17 @@ def play_game(word_list):
     * If the user inputs anything else, ask them again.
     """
     # TO DO...
+    print('Welcome to the 6.00 Word Game!')
+    print('What would you like to do?')
+    print('n - new hand')
+    print('r - repeat hand')
+    print('e - exit game')
+    input('?') = choice
+    if choice == n:
+        deal_hand(HAND_SIZE)
+    elif choice == r:
+        
+
 
 #
 # Build data structures used for entire session and play game
