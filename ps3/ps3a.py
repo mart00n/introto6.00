@@ -158,9 +158,13 @@ def update_hand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
-    for c in word:  # This implementation leaves keys with value 0 from hand in dict after update
-        hand[c] -= 1    # Looks up key c in dict, subtracts 1 from amount of that letter
-    return hand
+    updated_hand = {}
+    for key, value in hand.items():
+        updated_hand.update({key: value - word.count(key)})
+    # Defines new dict with new ID to avoid assignment issue
+    # This implementation leaves keys with value 0 from hand in dict after update
+    # Looks up key c in dict, subtracts 1 from amount of that letter
+    return updated_hand
 
 # some testing...
 # hand = {'a':1, 'q':1, 'l':2, 'm':1, 'u':1, 'i':1}
@@ -242,15 +246,19 @@ def play_hand(hand, word_list):
       
     """
     attempt = ''
-    round_hand = hand
     total_score = 0
+    round_hand = {} # prevents mutation bug with assignment
+    for k, v in hand.items():
+        round_hand.update({k:v}) # prevents mutation of hand - clones hand into round_hand
     while sum(round_hand.values()) != 0:
+        print('------------------------------')
         print('Your hand is:')
-        print(round_hand)
-        print()
+        # print(round_hand)
+        display_hand(round_hand)
         print('Play a word or type . to end your hand: ')
         attempt =  str(input('')).lower()
         if attempt == '.':
+            print('------------------------------')
             print('Total hand score:',total_score)
             round_hand = {}
         elif is_valid_word(attempt, round_hand, word_list) == True:
@@ -261,6 +269,7 @@ def play_hand(hand, word_list):
             print('Word score: ',word_score)
             print('Total score: ',total_score)
         else:
+            print()
             print('Invalid word. Please try again or end your hand.')
     print('Hand completed!')
     # TO DO ...
@@ -300,7 +309,7 @@ def play_game(word_list):
             if hand != 0:
                 play_hand(hand, word_list)
             else:
-                print('No previous hand.')
+                print('No previous hand. Please select n for new hand.')
         elif choice == 'e':
             print('Thanks for playing!')
         else:
