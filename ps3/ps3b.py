@@ -1,7 +1,14 @@
+#! /usr/bin/env python
+# 6.00 Problem Set 3B Solutions
+# 
+# The 6.00 Word Game
+# Created by: Kevin Luu <luuk> and Jenna Wiens <jwiens>
+# Andrew Marton
+# Started at 1000
+
 from ps3a import *
 import time
 from perm import *
-
 
 #
 #
@@ -16,8 +23,24 @@ def comp_choose_word(hand, word_list):
     hand: dictionary (string -> int)
     word_list: list (string)
     """
-    # TO DO...
-
+    word_scores = {} # Makes blank dict to record all the valid words and their score
+    #print('Sanity check!')
+    print('Thinking...')
+    for n in range(1, HAND_SIZE + 1):
+        permlist = get_perms(hand, n)
+        if len(permlist) == 0:
+            return 0
+        for word in permlist:
+            if is_valid_word(word, hand, word_list):
+                #print(word, get_word_score(word, HAND_SIZE))
+                word_scores.update({word: get_word_score(word, n)})
+            elif len(permlist) == 0:
+                return 0
+    scores = list(word_scores.values())
+    words = list(word_scores.keys())
+    #print(words[scores.index(max(scores))])
+    #print(type(words[scores.index(max(scores))]))
+    return words[scores.index(max(scores))]
 #
 # Problem #6B: Computer plays a hand
 #
@@ -40,8 +63,26 @@ def comp_play_hand(hand, word_list):
      hand: dictionary (string -> int)
      word_list: list (string)
     """
-    # TO DO ...    
-    
+    print('CPU Turn')
+    CPU_score = 0
+    choice = ''
+    #CPU_hand = deal_hand(HAND_SIZE)
+    while calculate_handlen(hand) > 0: #choice != 0:
+        display_hand(hand)
+        choice = comp_choose_word(hand, word_list)
+        if choice == 0:
+            print('The computer cannot play remaining letters')
+            break
+        #print(choice)
+        #print(type(choice))
+        CPU_score += get_word_score(choice, calculate_handlen(hand))
+        hand = update_hand(hand, choice) # Handles the list returned by word choice fxn
+        print('CPU plays', "'",choice,"'", 'worth', get_word_score(choice, calculate_handlen(hand)), 'points') 
+    print('CPU hand completed!') 
+    if calculate_handlen(hand) == 0:
+        print('All letters used, 50 bonus points!')
+    print('Total score:', CPU_score)
+
 #
 # Problem #6C: Playing a game
 #
@@ -71,6 +112,10 @@ def play_game(word_list):
 #
 if __name__ == '__main__':
     word_list = load_words()
-    play_game(word_list)
+    #play_game(word_list)
+    #hand = deal_hand(HAND_SIZE)
+    hand = get_frequency_dict('figures')
+    #comp_choose_word(hand, word_list)
+    comp_play_hand(hand, word_list)
 
     

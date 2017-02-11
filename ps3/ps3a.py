@@ -128,15 +128,12 @@ def deal_hand(n):
     """
     hand={} # defines hand as blank dict
     num_vowels = int(n / 3)  # sets number of letters to be drawn from vowel list as total over 3
-    
     for i in range(num_vowels):
         x = VOWELS[random.randrange(0,len(VOWELS))]
         hand[x] = hand.get(x, 0) + 1
-        
     for i in range(num_vowels, n):    
         x = CONSONANTS[random.randrange(0,len(CONSONANTS))]
-        hand[x] = hand.get(x, 0) + 1
-        
+        hand[x] = hand.get(x, 0) + 1 
     return hand
 
 #
@@ -145,9 +142,9 @@ def deal_hand(n):
 def update_hand(hand, word):
     """
     Assumes that 'hand' has all the letters in word.
-	In other words, this assumes that however many times
-	a letter appears in 'word', 'hand' has at least as
-	many of that letter in it. 
+    In other words, this assumes that however many times
+    a letter appears in 'word', 'hand' has at least as
+    many of that letter in it. 
 
     Updates the hand: uses up the letters in the given word
     and returns the new hand, without those letters in it.
