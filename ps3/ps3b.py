@@ -87,7 +87,7 @@ def comp_play_hand(hand, word_list):
 # Problem #6C: Playing a game
 #
 #
-def play_game(word_list):
+def CPU_play_game(word_list):
     """Allow the user to play an arbitrary number of hands.
 
     1) Asks the user to input 'n' or 'r' or 'e'.
@@ -105,17 +105,35 @@ def play_game(word_list):
 
     word_list: list (string)
     """
-    # TO DO...
+    pick = ''
+    while pick != '.':
+        print('Main menu - type 1 for solo game, 2 for the CPU to play, and . to quit')
+        pick = input('...')
+        if pick == '1':
+            single_player_game(word_list)
+        elif pick == '2':
+            comp_play_hand(deal_hand(HAND_SIZE), word_list)
+        elif pick == '.':
+            print('Program closing...')
+            exit()
+        else:
+            print('Invalid selection')
+
+
+    # The organization above is stupid and I'm doing my own thing
+    # 2 comes first, funnels to two game logic functions - one for a CPU vs match 1 for human
+    # Repeating hands is dumb and who cares, this project is too big anyhow...
+
         
 #
 # Build data structures used for entire session and play game
 #
 if __name__ == '__main__':
     word_list = load_words()
-    #play_game(word_list)
+    CPU_play_game(word_list)
     #hand = deal_hand(HAND_SIZE)
-    hand = get_frequency_dict('figures')
+    #hand = get_frequency_dict('figures')
     #comp_choose_word(hand, word_list)
-    comp_play_hand(hand, word_list)
+    #comp_play_hand(hand, word_list)
 
     

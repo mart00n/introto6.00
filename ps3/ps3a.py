@@ -274,7 +274,7 @@ def play_hand(hand, word_list):
 # Problem #5: Playing a game
 # Make sure you understand how this code works!
 # 
-def play_game(word_list):
+def single_player_game(word_list):
     """
     Allow the user to play an arbitrary number of hands.
 
@@ -320,7 +320,7 @@ def main():
     #test_hand = deal_hand(HAND_SIZE)
     #play_hand(test_hand, word_list)
     #print('canary')
-    play_game(word_list)
+    single_player_game(word_list)
 
     #Testing for issues with is_valid_word function
     #testword = 'quail'
