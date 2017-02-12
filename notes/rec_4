@@ -1,0 +1,58 @@
+Recitation 4
+2/12/2017
+
+Going through grad student notes:
+
+Why do we do big O notation?
+    Put an upper bound on how long some computation will take
+        This is not a time bound! It tells us how many steps something will take
+        Of course this can correlate with time, but different machines, etc. will affect that
+    O(n) - number of steps is linear with the size of the input
+        Regardless of machine, I know bigger inputs linearly increase time required
+    We are concerned with scalability of our programs
+    Cool example:
+        Consider x^2 vs x^3 -- from 0 to 1 x^3 is actually smaller than x^2! but when we consider
+        large inputs, or look at the 'broad scope' x^3 is much larger. This is like how we would
+        look at order; how does it apply to huge blocks of data? human genome, space telescope, etc
+
+For a massive data set:
+Algorithms
+A1: O(n)
+A2: O(n^3)
+
+To compare the speed/complexity diff between the two:
+n^3/n = n^2
+
+The difference in complexity between these two algorithms is roughly n^2
+These ratios are easy to compare and can be important.
+
+Frequent notation:
+Constant time: O(1)
+but O(1) = O(2) = O(2^100)
+Why?
+    Because all of them are constants. Even though 2^100 is much bigger than one, as the size of
+    input grows, there's no difference in how long the algorithm takes. So the number of steps
+    does not matter if the program only executes them all once!
+
+Logarithmic time: a binary search (we cut our input in half each search step)
+    base 2 log!
+
+Order nlog(n) - fastest time bound for sort!
+
+O(n^k) < O(k^n) always! The second of these is probably something we can't compute
+
+For some period lecture focused on determining the order of various functions. Pretty standard,
+I was able to follow well.
+
+Note:
+Slicing a string or list is not a constant time operation, because its implementation walks through the
+list you're slicing
+
+There's other stuff like this out there, so be a bit careful to note what's linear and what's not.
+
+This recitation might be good for exam study.
+
+Object Oriented Programming
+GOING INTO PS4 - 32:30 mark in video. Will do later on!
+
+

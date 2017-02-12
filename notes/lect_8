@@ -1,0 +1,203 @@
+Lecture 8 notes
+2/12/2017
+Efficiency and Order of Growth
+
+Previously we focused on getting our programs to work. Now we have to focus on getting them to work
+quickly enough to be useful for our tasks.
+
+We don't have to be experts, but let's get a decent sense for:
+    Why some programs take so long vs others
+    How to target the correct amount of time
+    How to make sure our programs can finish before we die
+
+Computers today are very fast and can use brute force to solve many problems. This can really matter
+even for us. And as the scale of our problems grow, it will become a bigger and bigger issue. Efficiency
+is not about 'clever' coding tricks to save one or two instructions here or there. It's more about
+choosing the right algrothim. EFFICIENCY IS ABOUT ALGORITHMS, NOT CODING DETAILS. Algorithms are hard to
+create. A great computer scientist might create 1 new algorithm in their career.
+
+What we will do is take a problem, and reduce it into previously solved problems. Often this is key
+to using computation to solve new problems.
+
+Our problems have 2 dimensions, space and time (space is memory usually). We worry mostly about time
+these days, eg how long will it take to finish using this algorithm? This is called 'Computational
+Complexity'
+
+How can we gauge this? We could time how long it takes the program to finish with a watch but this
+is a bad method. A program could take different amounts of time on different architechtures/machines.
+Differences between python implementations can be an influence. Most of all though, often this time
+depends upon the input. So we need some way to talk about this 'complexity' that is more abstract.
+
+So let's count the number of basic steps:
+define some function, say time which maps the natural numbers to natural numbers.
+T:N -> N
+    The first N corresponds to the size of the input (how big a set of numbers do we run the prog on)
+    The second N is the number of steps that the computation will take for that size input
+
+A step is an operation that takes constant amount of time.
+    Steps:
+        An assignment
+        An array access
+        etc.
+
+We will use a model of the computer: Random Access Machine (RAM)
+    In a RAM instructions are executed one after another (sequentially, one thing at a time)
+    We assume constant time required to access memory (in the early days of tape, this was a bad
+    assumption. It isn't perfect today due to memory hierarchy which may cause times to differ by
+    major factors. Still, we won't focus on that level of detail here. Almost everyone who
+    analyzes algorithms uses the model we're going to use.
+    
+    Also of note: in modern computers things happen in parallel. But for us, this method is still
+    good for analyzing individual algorithms
+
+How to think about this...
+Best case:
+    Considering an algorithm using linear search through a space, the best case is the first value
+    chosen is the answer and minimizes the run time.
+Worst case:
+    We look at every value in the space but no answer is found. Maximimzes run time, and no result!
+Expected/Average case:
+    We look at some number of values and find the right one.
+
+It seems we should consider the expected case often, but in reality it is not often encountered.
+We must consider other things far more often really.
+
+Focusing on the worst case provides an upper bound. This prevents us from having any surprises.
+    'The list is 1 million elements, worst is we check every single one and it takes overnight'
+    The worst case happens quite often in practice. We very often do look for values in a range
+    with no solution!
+
+From class code:
+    f(n) is a factorial function
+        We assert that our number is greater than 0
+        We assign some value
+        We loop
+            Each time through we have 3 steps (check, assignments)
+            The loop occurs n times
+        Return statement at the end
+
+So to write some function that characterizes complexity of this code:
+    2 + 3*n + 1
+
+But suppose n = 3000?
+    9003 steps
+
+Do we really care if it's 9000 or 9003 steps for time purposes? No. So a good approximation in many
+cases is to ignore additive components. So a good approximation for the complexity of this algorithm:
+    3*n
+
+This is focusing on GROWTH with respect to size of input.
+
+Even further, do I actually care whether it's 3000 or 9000 (maybe 3 hours to run vs 9 hours to run...)
+As things get bigger, the answer is probably not. What if it was 3000 days vs 9000 days? Too long for
+most things in either case. So often we even ignore multiplicative constants. We use a model of 
+asymptotic growth. How does the complexity grow as we increase the size of the inputs?
+
+Big Oh notation (written as Omicron as in Order)
+O(n)
+
+What does this do?
+    Gives us an upper bound for the asymptotic growth of the function.
+    We used to write f(x) is to (on board the 'E' thing is used for is to) O(x^2)
+    This means that the function f grows no faster than the quadratic polynomial x^2
+
+We often see:
+O(1) - constant - the time required is independent of the input
+O(ln(n)) - logarithmic to the input size
+O(n) - linear to the input size
+O(nln(n)) - 'log linear' - more on this one later
+O(n^c) - polynomial, often quadratic
+O(c^n) - exponential to size of input (this one is bad for us!)
+
+NOTE: Professor at this point demonstrated a program using pylab for plotting. We will be doing
+this soon but don't get access to the code at this time and also are told not to worry about it
+for right now.
+
+Log linear algorithms are much worse than linear. They grow much faster, and a considerable
+difference is made. But when compared to quadratic, linear and log linear both look practically
+the same.
+
+In practice, a quadratic algorithm is often too slow. And when we look at exponential,
+it grows so quickly it is practically never usable.
+
+When looking at graphs of order growth with a logarithmic y axis, the comparison is more interesting.
+Exponential looks like a slope 1 line (one that quickly escalates to an enormous number that is
+would never be possible to achieve)
+
+Unfortunately, we might often look at problems that in principle that can only be solved by
+exponential algorithms. In these cases we often focus on approximations that are simplified
+into lower order growth algorithms. We should focus on no more than linear log growth algs
+
+When someone writes f(x) is order x^2, what they mean is 'the worst case is about x^2'
+This is not the really formal way to do this, but it's what we will do most times
+
+Examples from ic_8.py
+fact(n), written recursively
+
+What do we care about? the number of times that fact(n) is called
+    We have a decrementing function (n - 1). We can do this n times, if we start with n
+    So, fact is called n times. Thus, order n
+
+So the same algorithm recursively and iteratively has the same order (some overhead for fxn calls
+exists but its like an additive or multiplicative thing that we ignore)
+
+Another example:
+    g(n) from example code
+        Two nested loops, how to consider?
+        Start with the inner loop, how many times do I go through the innner loop, and how long
+        does that take?
+        Inner loop statement: order n
+        How many times do I start the inner loop back up again?
+        Outer loop: order n
+
+    So g(n) is O(n^2)
+
+This is typical of nested loops or nested recursions (recursion inside of loops too)
+Start inside out for your analysis
+
+    h(x) from code
+        h returns the sum of the digits in a string of digits
+        The complexity of this one:
+            Ignore all but the loop, which we go through based on the number of digits in the
+            string representation of the int
+        So: h(x) is O(n) where n is log10(x) - this is because the number of decimal digits you
+            need to express an integer is log10 of that int!
+
+Note that you have to careful. Writing 'O(n)' does not tell us enough, as the magnitude of x
+isn't what matters here, its log10(x)!
+
+This is particularly tricky in cases of multiple inputs to consider and how they interact
+
+Some more examples:
+    linear search
+    search(L, e) from code
+    Order: O(n) where n is the length of the list
+    
+    binary search
+    bSearch(L, e, low, high)
+    Order: O(log2(n)) where n is the length of the list
+
+When a linear search searches 100 inputs then gets 200 inputs it grows by a factor of 2
+When a binary search grows from 100 to 200 inputs it only increases its number of steps by 1!
+
+Something really important to note from the code:
+There are many possible search functions to use. Maybe the program started using a linear search
+but swithed to a more complicated search later. In the code, several search functions exist, with
+one function, called search, containing only a list of elements and a value as inputs. This
+function exists only to call another search function. This means that throughout a program
+there is one consistent INTERFACE for searches. So if we call this over and over, then go back
+and change which search function it uses, we can avoid breaking our code.
+
+Doing this is very important! Take note!
+
+Other note: careful with global vars being called inside functions locally
+
+The base of a log doesn't really matter much to us when compared to the fact that the given
+relationship with order is logarithmic
+
+An assumption has been made for all this to be true:
+    We can extract the elements from a list and compare them to a value in constant time
+    But in binary search, I'm looking at L against 2 different bounds. How do I know this is
+    constant time? There can be things inside functions more complex than we think.
+    In this case, this rather complicated expression can be done in constant time, which will
+    be the topic to start our next lecture.

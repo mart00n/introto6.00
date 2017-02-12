@@ -1,0 +1,122 @@
+Notes on Lecture 7
+2/12/2017
+
+Notes on floating point numbers:
+How we think:
+3.01 is integer 3 + integer 1/integer 100, etc.
+
+Binary:
+101 = 1*4 + 0*2 + 1*1 = 5
+
+Given n binary digits, how many numbers can be represented with those digits?
+    2^n (as opposed to 10^n for decimal digits)
+
+Why have floating points caused problems? We think in base 10 instead of base 2 - Because
+it's easy to build on/off switches in hardware, and make them fast and efficient. Therefore
+numbers are a sequence of on/off, 1 and 0
+
+Let's consider 0.125 (1/8th for smarties)...
+    In decimal 0.125 = 1E-01 + 2E-02 + 5E-03
+    In binary  0.125 = 1E-03
+
+But with 0.1...
+    In decimal 0.1 = 1E-01
+    In binary  0.1 = ? (it's so long, the prof wouldn't write it on the board!)
+
+In fact, 0.1 is INFINITE when expressed in binary, a repeating sequence of binary. No finite combo
+which produces the decimal number 0.1 in binary digits exists. We have to approximate with a finite
+number of bits. This is what happens internally in Python when we give it floats. We get an 
+approximation that can be expressed in binary.
+
+This can lead to problems. When I tell the computer 0.10 I'm getting something very close to it but
+not exactly. And when we print the print() function rounds these estimates to 17 digits. Meaning we
+might get 0.10000000000000001
+
+Note the repr() function (representation) exists in place of print(), and prints the most 'true'
+representation of something in memory. For example, sometimes print would give 0.12 while repr might
+give a 17 digit representation.
+
+How often does this matter:
+    When comparing floats, like 'while x == y:' where the numbers are floats
+    DON'T EVER TEST THAT TWO FLOATS ARE IDENTICAL!
+    Use a function that has some epsilon and compare whether the numbers are 'close enough'
+
+This isn't complicated, but keep it in mind when doing floating point arithmetic. It will save you
+from bugs.
+
+NOTE: The specific example used in this lecture does not work the same way in newer versions of Python!
+    The moral though remains the same: don't compare floats for identical values! Still will cause
+    headaches.
+
+The time has come to learn more about debugging.
+
+ORIGIN: Grace Hopper had a mainframe repeatedly crash while working for the Navy and eventually removed
+    actual bugs (a moth) from the machine to prevent the issues. 9/9/1947. (The function was tan-1() and was taking
+    multiple hours (wow!)). This is a somewhat apocryphal story (actual notes and an image of the moth preserved
+    inside of a notebook still exist, but the term 'debug' and 'bug' as an issue predated the incident).
+
+Grace Hopper was a badass, get a bio and read sometime...
+
+If there is a bug in your program -- YOU PUT IT THERE. Bugs are mistakes, they do not 'breed' in programs
+or sneak in without your mistakes.
+
+The goal is never to eliminate one bug quickly, the goal is to move toward a bug free program (NOT
+ALWAYS THE SAME STRATEGY FOR THESE GOALS). Also, we are hardly ever sure that we have 0 bugs left.
+Debugging is difficult, no one does it well instinctively. One of the best aspects of a good programmer
+is debugging ability. Learning some basic methods are not hard, and it is a transferrable skill. The
+same basic principles on debugging software can be applied to lab work, engineering, medicine, etc.
+
+For 4-5 decades, we have built tools called 'debuggers' into IDEs and software. But the tools are not
+what is important. The skill of the user is everything, and many experienced programmers almost never
+use them. We are going to rely on print statements!
+
+Returning to our search algorithms, it is a good idea to search for bugs using some approximation of a
+binary search. We know our program doesn't work for some reason, what are we searching for?
+
+Don't think 'Why doesn't it give the answer I want?'
+Instead think 'How could it have done what it has just done?'
+
+Subtle difference but the second is ususally an easier question to answer and can lead to the right
+solution. Scientific method: Study the data you have.
+    Available data:
+        Program text
+        Test results
+        Get more data with print() statements and more tests
+    Form a hypothesis consistent with the data
+    Design and run a repeatable experiment
+        The experiment must have the potential to refute the hypothesis in case it is wrong
+        Repeatability can be an issue when programs have random elements. How do we address this?
+        Even worse and more subtley, sometimes we have timing errors. These sorts of issues are what
+        cause system crashes!
+        Even more variable: where programs get human input
+
+We will learn to address making things repeatable even when random later on.
+
+Example:
+    ic_7.py contains example 2. Function to determine if something is a palindrome.
+    An assignment error exists, it is obvious now but we will go through the process anyhow:
+        Divide the lines of code into 2, then search for the bug above, then below the 'line'
+            Intermediate values and print statements in both regions to see if expected values
+            are occuring
+        This often divides into 'are the values of the variables right?' and 'are the values of
+        the output right?'
+
+There is no such thing as 'The bug' there is only 'A bug'. As with roaches, the more you find the
+more there probably are. Finding one means look harder for more in the same area.
+
+How about 'Test drivers' or 'Test harnesses'
+    Write some code that has nothing to do with the program, but makes it easier to test/debug the
+    program. For example, instead of repeatedly running the program and entering the same values,
+    pre program several test cases of values and call the functions on them, then make one quick
+    change and just run it again.
+
+    Never worry that you're putting extra code into your projects only to test things. Most
+    software ships with a large % of its code devoted to just this sort of thing. It will save
+    you work later! Comment on test code too!
+
+    Good practice: When using print statements to test values also print what the expected values
+    are.
+
+So that's some notes on debugging. God knows we've done plenty in the last HW assignment!
+
+
